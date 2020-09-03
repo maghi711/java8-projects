@@ -23,13 +23,19 @@ public class OneShop {
      * @return
      */
     public Future<Double> getPriceAsync(String product) {
-        CompletableFuture<Double> future = new CompletableFuture<>();
+        CompletableFuture<Double> future = CompletableFuture.supplyAsync(() -> calculatePrice(product));
+        // The above single line replaces the below set of steps.
+/*      CompletableFuture<Double> future = new CompletableFuture<>();
         new Thread(
                 () -> {
-                    double price = calculatePrice(product);
-                    future.complete(price);
+                    try {
+                        double price = calculatePrice(product);
+                        future.complete(price);
+                    } catch (Exception e) {
+                        future.completeExceptionally(e);
+                    }
                 }
-        ).start();
+        ).start();*/
         return future;
     }
 
@@ -41,13 +47,15 @@ public class OneShop {
     }
 
     private double calculatePrice(String product) {
-        delay();
+        delay(3);
+        if (true)
+            throw new RuntimeException("No prouct info available");
         return new Random().nextDouble() * product.charAt(0) + product.charAt(1);
     }
 
-    public static void delay() {
+    public static void delay(long delayInSeonds) {
         try {
-            TimeUnit.SECONDS.sleep(1);
+            TimeUnit.SECONDS.sleep(delayInSeonds);
         } catch (InterruptedException ie) {
             throw new RuntimeException();
         }
