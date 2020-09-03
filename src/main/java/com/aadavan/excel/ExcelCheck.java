@@ -7,6 +7,7 @@ import com.opencsv.CSVWriter;
 import java.io.File;
 import java.io.FileReader;
 import java.io.FileWriter;
+import java.util.ArrayList;
 import java.util.List;
 
 public class ExcelCheck {
@@ -16,19 +17,18 @@ public class ExcelCheck {
             FileReader filereader = new FileReader(file);
             CSVReader csvReader = new CSVReader(filereader);
             List<String[]> allElements = csvReader.readAll();
-            for (int i = 1; i < allElements.size(); i++) {
+            List<String[]> header = new ArrayList<>();
+            for (int i = 0; i < allElements.size(); i++) {
                 String[] row = allElements.get(i);
-                if (allElements.isEmpty()) {
-                    System.out.println("The record doesnt exists in CSV file");
-                } else {
-                    allElements.remove(i);
-                    System.out.println("The record exists in CSV file");
+                if (i == 0) {
+                    header.add(row);
+                    break;
                 }
             }
             csvReader.close();
             FileWriter sw = new FileWriter(file);
             CSVWriter writer = new CSVWriter((sw), ',', CSVWriter.NO_QUOTE_CHARACTER);
-            writer.writeAll(allElements);
+            writer.writeAll(header);
             writer.close();
         } catch (Exception e) {
             e.printStackTrace();
