@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>Random.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">java8-projects</a> &gt; <a href="index.source.html" class="el_package">jeval.function.math</a> &gt; <span class="el_source">Random.java</span></div><h1>Random.java</h1><pre class="source lang-java linenums">/*
+ * Copyright 2002-2007 Robert Breidecker.
+ * 
+ * Licensed under the Apache License, Version 2.0 (the &quot;License&quot;);
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ * 
+ *      http://www.apache.org/licenses/LICENSE-2.0
+ * 
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an &quot;AS IS&quot; BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
+
+package jeval.function.math;
+
+import jeval.Evaluator;
+import jeval.function.Function;
+import jeval.function.FunctionConstants;
+import jeval.function.FunctionException;
+import jeval.function.FunctionResult;
+
+/**
+ * This class is a function that executes within Evaluator. The function returns
+ * a random double value greater than or equal to 0.0 and less than 1.0. See the
+ * Math.random() method in the JDK for a complete description of how this
+ * function works.
+ */
+<span class="nc" id="L31">public class Random implements Function {</span>
+	/**
+	 * Returns the name of the function - &quot;random&quot;.
+	 * 
+	 * @return The name of this function class.
+	 */
+	public String getName() {
+<span class="nc" id="L38">		return &quot;random&quot;;</span>
+	}
+
+	/**
+	 * Executes the function for the specified argument. This method is called
+	 * internally by Evaluator.
+	 * 
+	 * @param evaluator
+	 *            An instance of Evaluator.
+	 * @param arguments
+	 *            Not used.
+	 * 
+	 * @return A random double value greater than or equal to 0.0 and less than
+	 *         1.0.
+	 * 
+	 * @exception FunctionException
+	 *                Thrown if the argument(s) are not valid for this function.
+	 */
+	public FunctionResult execute(final Evaluator evaluator, final String arguments)
+			throws FunctionException {
+<span class="nc" id="L58">		Double result = new Double(Math.random());</span>
+
+<span class="nc" id="L60">		return new FunctionResult(result.toString(), </span>
+				FunctionConstants.FUNCTION_RESULT_TYPE_NUMERIC);
+	}
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.3.201901230119</span></div></body></html>

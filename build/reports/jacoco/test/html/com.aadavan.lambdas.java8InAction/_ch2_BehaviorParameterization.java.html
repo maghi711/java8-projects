@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>_ch2_BehaviorParameterization.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">java8-projects</a> &gt; <a href="index.source.html" class="el_package">com.aadavan.lambdas.java8InAction</a> &gt; <span class="el_source">_ch2_BehaviorParameterization.java</span></div><h1>_ch2_BehaviorParameterization.java</h1><pre class="source lang-java linenums">package com.aadavan.lambdas.java8InAction;
+
+import com.aadavan.lambdas.predicate.Predicate;
+
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
+
+<span class="nc" id="L9">public class _ch2_BehaviorParameterization {</span>
+
+<span class="nc" id="L11">    static List&lt;Apple&gt; appleList = new ArrayList&lt;&gt;();</span>
+
+    static {
+<span class="nc" id="L14">        initAppleInventory();</span>
+<span class="nc" id="L15">    }</span>
+
+    public static void main(String[] args) {
+<span class="nc" id="L18">        System.out.println(&quot;appleList = &quot; + appleList);</span>
+<span class="nc" id="L19">        System.out.println(&quot;filterGreenApples() = &quot; + filterAppleByColor(&quot;green&quot;));</span>
+<span class="nc" id="L20">        System.out.println(&quot;filterGreenApples() = &quot; + filterAppleByColor(&quot;red&quot;));</span>
+<span class="nc" id="L21">        System.out.println(&quot;filterGreenApples() = &quot; + filterAppleByColor(&quot;blue&quot;));</span>
+
+<span class="nc" id="L23">        System.out.println(filterApple((a) -&gt; &quot;green&quot;.equalsIgnoreCase(a.getColor())));</span>
+<span class="nc" id="L24">        System.out.println(filterApple((a) -&gt;</span>
+<span class="nc bnc" id="L25" title="All 2 branches missed.">            a.getWeight() &gt;= 125</span>
+        ));
+<span class="nc" id="L27">        AppleFormatter formatter = (a) -&gt; { return a.toString();};</span>
+<span class="nc" id="L28">        prettyPrintApples(formatter);</span>
+<span class="nc" id="L29">        prettyPrintApples((a) -&gt; &quot;Hey my weight is &quot; + a.getWeight() + &quot; gm and my color is &quot; + a.getColor());</span>
+<span class="nc" id="L30">        prettyPrintApples((a) -&gt; &quot;I am &quot; + a.getWeight() + &quot; gm heavy, and my color is &quot; + a.getColor());</span>
+<span class="nc" id="L31">        prettyPrintApples((a) -&gt; {</span>
+<span class="nc" id="L32">            return a.getColor() + &quot; is my color.&quot;;</span>
+        });
+<span class="nc" id="L34">    }</span>
+
+    public static void prettyPrintApples(AppleFormatter formatter) {
+<span class="nc bnc" id="L37" title="All 2 branches missed.">        for (Apple a: appleList) {</span>
+<span class="nc" id="L38">            System.out.println(formatter.format(a));</span>
+<span class="nc" id="L39">        }</span>
+<span class="nc" id="L40">    }</span>
+
+    /**
+     * paramter parameterization.
+     * @param color
+     * @return
+     */
+    public static List&lt;Apple&gt; filterAppleByColor(String color) {
+<span class="nc" id="L48">        List&lt;Apple&gt; result = new ArrayList&lt;&gt;();</span>
+<span class="nc bnc" id="L49" title="All 2 branches missed.">        for (Apple apple: appleList) {</span>
+<span class="nc bnc" id="L50" title="All 2 branches missed.">            if (color.equalsIgnoreCase(apple.getColor())) {</span>
+<span class="nc" id="L51">                result.add(apple);</span>
+            }
+<span class="nc" id="L53">        }</span>
+<span class="nc" id="L54">        return result;</span>
+    }
+
+    /**
+     * Behavior parameterization.
+     * @param filterCondition
+     * @return
+     */
+    public static List&lt;Apple&gt; filterApple(Predicate&lt;Apple&gt; filterCondition) {
+<span class="nc" id="L63">        List&lt;Apple&gt; result = new ArrayList&lt;&gt;();</span>
+<span class="nc bnc" id="L64" title="All 2 branches missed.">        for (Apple apple: appleList) {</span>
+<span class="nc bnc" id="L65" title="All 2 branches missed.">            if (filterCondition.test(apple)) {</span>
+<span class="nc" id="L66">                result.add(apple);</span>
+            }
+<span class="nc" id="L68">        }</span>
+<span class="nc" id="L69">        return result;</span>
+    }
+
+    /**
+     * Initialize the apple inventory.
+     */
+    public static void initAppleInventory() {
+<span class="nc" id="L76">        appleList.addAll(</span>
+<span class="nc" id="L77">                Arrays.asList(</span>
+                        new Apple(&quot;Red&quot;, 100),
+                        new Apple(&quot;Green&quot;, 150),
+                        new Apple(&quot;Blue&quot;, 125)
+        ));
+<span class="nc" id="L82">    }</span>
+}
+
+interface AppleFormatter {
+    String format(Apple a);
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.3.201901230119</span></div></body></html>

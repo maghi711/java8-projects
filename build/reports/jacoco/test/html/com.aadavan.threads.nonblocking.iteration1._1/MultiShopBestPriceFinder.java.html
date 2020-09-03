@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>MultiShopBestPriceFinder.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">java8-projects</a> &gt; <a href="index.source.html" class="el_package">com.aadavan.threads.nonblocking.iteration1._1</a> &gt; <span class="el_source">MultiShopBestPriceFinder.java</span></div><h1>MultiShopBestPriceFinder.java</h1><pre class="source lang-java linenums">package com.aadavan.threads.nonblocking.iteration1._1;
+
+import java.util.Arrays;
+import java.util.List;
+import java.util.concurrent.CompletableFuture;
+import java.util.stream.Collectors;
+
+<span class="nc" id="L8">public class MultiShopBestPriceFinder {</span>
+
+    public static void main(String[] args) {
+<span class="nc" id="L11">        withParallelStream_1(); // _1_ Call</span>
+<span class="nc" id="L12">        withAsyncRequest(); // _2_ call</span>
+<span class="nc" id="L13">    }</span>
+
+    private static void withAsyncRequest() {
+<span class="nc" id="L16">        long s1 = System.currentTimeMillis();</span>
+<span class="nc" id="L17">        final List&lt;String&gt; prices = findPrices_v2(&quot;Nokia 8.3&quot;);</span>
+<span class="nc" id="L18">        long finishMillis = System.currentTimeMillis() - s1;</span>
+<span class="nc" id="L19">        System.out.println(&quot;finishMillis = &quot; + finishMillis);</span>
+<span class="nc" id="L20">        System.out.println(&quot;prices = &quot; + prices);</span>
+<span class="nc" id="L21">    }</span>
+
+    private static void withParallelStream_1() {
+<span class="nc" id="L24">        long s1 = System.currentTimeMillis();</span>
+<span class="nc" id="L25">        final List&lt;String&gt; prices = findPrices_v1(&quot;Nokia 8.3&quot;);</span>
+<span class="nc" id="L26">        long finishMillis = System.currentTimeMillis() - s1;</span>
+<span class="nc" id="L27">        System.out.println(&quot;finishMillis = &quot; + finishMillis);</span>
+<span class="nc" id="L28">        System.out.println(&quot;prices = &quot; + prices);</span>
+<span class="nc" id="L29">    }</span>
+
+    public static List&lt;String&gt; findPrices_v1(String product) {
+<span class="nc" id="L32">        System.out.println(&quot;Running findPrices_v1 product = &quot; + product);</span>
+<span class="nc" id="L33">        List&lt;Shop&gt; shops = getShops();</span>
+<span class="nc" id="L34">        return shops.parallelStream()</span>
+<span class="nc" id="L35">                .map(shop -&gt; String.format(&quot;%s price is %.2f&quot;, shop.getName(), shop.getPrice(product)))</span>
+<span class="nc" id="L36">                .collect(Collectors.toList());</span>
+    }
+
+    public static List&lt;String&gt; findPrices_v2(String product) {
+<span class="nc" id="L40">        System.out.println(&quot;Running findPrices_v2 product = &quot; + product);</span>
+<span class="nc" id="L41">        List&lt;Shop&gt; shops = getShops();</span>
+<span class="nc" id="L42">        final List&lt;CompletableFuture&lt;String&gt;&gt; priceFutures = shops.stream()</span>
+<span class="nc" id="L43">                .map(shop -&gt; CompletableFuture.supplyAsync(() -&gt; String.format(&quot;%s price is %.2f&quot;, shop.getName(), shop.getPrice(product))))</span>
+<span class="nc" id="L44">                .collect(Collectors.toList());</span>
+<span class="nc" id="L45">        return priceFutures.stream().map(CompletableFuture::join)</span>
+<span class="nc" id="L46">                .collect(Collectors.toList());</span>
+    }
+
+    private static List&lt;Shop&gt; getShops() {
+<span class="nc" id="L50">        return Arrays.asList(</span>
+                new Shop(&quot;Amazon&quot;),
+                new Shop(&quot;Flipkart&quot;),
+                new Shop(&quot;Croma&quot;),
+                new Shop(&quot;PaytmMall&quot;),
+                new Shop(&quot;Sapna&quot;)
+        );
+    }
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.3.201901230119</span></div></body></html>

@@ -1,0 +1,116 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>Replace.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">java8-projects</a> &gt; <a href="index.source.html" class="el_package">jeval.function.string</a> &gt; <span class="el_source">Replace.java</span></div><h1>Replace.java</h1><pre class="source lang-java linenums">/*
+ * Copyright 2002-2007 Robert Breidecker.
+ * 
+ * Licensed under the Apache License, Version 2.0 (the &quot;License&quot;);
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ * 
+ *      http://www.apache.org/licenses/LICENSE-2.0
+ * 
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an &quot;AS IS&quot; BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
+
+package jeval.function.string;
+
+import jeval.EvaluationConstants;
+import jeval.Evaluator;
+import jeval.function.*;
+
+import java.util.ArrayList;
+
+/**
+ * This class is a function that executes within Evaluator. The function returns
+ * a new string with all of the occurances of the old character in the source
+ * string replaced with the new character. See the String.replace(char, char)
+ * method in the JDK for a complete description of how this function works.
+ */
+<span class="nc" id="L31">public class Replace implements Function {</span>
+	/**
+	 * Returns the name of the function - &quot;replace&quot;.
+	 * 
+	 * @return The name of this function class.
+	 */
+	public String getName() {
+<span class="nc" id="L38">		return &quot;replace&quot;;</span>
+	}
+
+	/**
+	 * Executes the function for the specified argument. This method is called
+	 * internally by Evaluator.
+	 * 
+	 * @param evaluator
+	 *            An instance of Evaluator.
+	 * @param arguments
+	 *            A string argument that will be converted into one string and
+	 *            two character arguments. The first argument is the source
+	 *            string to replace the charactes in. The second argument is the
+	 *            old character to replace in the source string. The third
+	 *            argument is the new character to replace the old character
+	 *            with in the source string. The string and character
+	 *            argument(s) HAS to be enclosed in quotes. White space that is
+	 *            not enclosed within quotes will be trimmed. Quote characters
+	 *            in the first and last positions of any string argument (after
+	 *            being trimmed) will be removed also. The quote characters used
+	 *            must be the same as the quote characters used by the current
+	 *            instance of Evaluator. If there are multiple arguments, they
+	 *            must be separated by a comma (&quot;,&quot;).
+	 * 
+	 * @return Returns a string with every occurence of the old character
+	 *         replaced with the new character.
+	 * 
+	 * @exception FunctionException
+	 *                Thrown if the argument(s) are not valid for this function.
+	 */
+	public FunctionResult execute(final Evaluator evaluator, final String arguments)
+			throws FunctionException {
+<span class="nc" id="L70">		String result = null;</span>
+<span class="nc" id="L71">		String exceptionMessage = &quot;One string argument and two character &quot;</span>
+				+ &quot;arguments are required.&quot;;
+
+<span class="nc" id="L74">		ArrayList values = FunctionHelper.getStrings(arguments, </span>
+				EvaluationConstants.FUNCTION_ARGUMENT_SEPARATOR);
+
+<span class="nc bnc" id="L77" title="All 2 branches missed.">		if (values.size() != 3) {</span>
+<span class="nc" id="L78">			throw new FunctionException(exceptionMessage);</span>
+		}
+
+		try {
+<span class="nc" id="L82">			String argumentOne = FunctionHelper.trimAndRemoveQuoteChars(</span>
+<span class="nc" id="L83">					(String) values.get(0), evaluator.getQuoteCharacter());</span>
+
+<span class="nc" id="L85">			String argumentTwo = FunctionHelper.trimAndRemoveQuoteChars(</span>
+<span class="nc" id="L86">					(String) values.get(1), evaluator.getQuoteCharacter());</span>
+
+<span class="nc" id="L88">			String argumentThree = FunctionHelper.trimAndRemoveQuoteChars(</span>
+<span class="nc" id="L89">					(String) values.get(2), evaluator.getQuoteCharacter());</span>
+
+<span class="nc" id="L91">			char oldCharacter = ' ';</span>
+<span class="nc bnc" id="L92" title="All 2 branches missed.">			if (argumentTwo.length() == 1) {</span>
+<span class="nc" id="L93">				oldCharacter = argumentTwo.charAt(0);</span>
+			} else {
+<span class="nc" id="L95">				throw new FunctionException(exceptionMessage);</span>
+			}
+
+<span class="nc" id="L98">			char newCharacter = ' ';</span>
+<span class="nc bnc" id="L99" title="All 2 branches missed.">			if (argumentThree.length() == 1) {</span>
+<span class="nc" id="L100">				newCharacter = argumentThree.charAt(0);</span>
+			} else {
+<span class="nc" id="L102">				throw new FunctionException(exceptionMessage);</span>
+			}
+
+<span class="nc" id="L105">			result = argumentOne.replace(oldCharacter, newCharacter);</span>
+<span class="nc" id="L106">		} catch (FunctionException fe) {</span>
+<span class="nc" id="L107">			throw new FunctionException(fe.getMessage(), fe);</span>
+<span class="nc" id="L108">		} catch (Exception e) {</span>
+<span class="nc" id="L109">			throw new FunctionException(exceptionMessage, e);</span>
+<span class="nc" id="L110">		}</span>
+
+<span class="nc" id="L112">		return new FunctionResult(result, </span>
+				FunctionConstants.FUNCTION_RESULT_TYPE_STRING);
+	}
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.3.201901230119</span></div></body></html>

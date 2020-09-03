@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>_1_Check.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">java8-projects</a> &gt; <a href="index.source.html" class="el_package">com.aadavan.rule.execution.quickrule.check</a> &gt; <span class="el_source">_1_Check.java</span></div><h1>_1_Check.java</h1><pre class="source lang-java linenums">package com.aadavan.rule.execution.quickrule.check;
+
+import java.util.ArrayList;
+import java.util.List;
+
+<span class="nc" id="L6">public class _1_Check {</span>
+
+    public static void main(String[] args) {
+<span class="nc" id="L9">        String expression=&quot;cardNo SUM_AMOUNT_IN_TIME_SUCCESS_PRIMARY_ID_MIN 'cardNo'|'2500000'|'5'  &amp;&amp; cardNo COUNT_IN_TIME_SUCCESS_PRIMARY_ID_MIN 'cardNo'|'3'|'5'&quot;;</span>
+<span class="nc" id="L10">        quickRuleCheck(expression, &quot;RULE::8198::3DS::1568292319810&quot;);</span>
+<span class="nc" id="L11">    }</span>
+
+    private static void quickRuleCheck(String expression, String ruleId) {
+<span class="nc" id="L14">        String tempArray[] = expression.split(&quot; &quot;, -1); // spliting the expression based on space, hence its comulsory for the expression to have space in between</span>
+<span class="nc" id="L15">        List elements = new ArrayList&lt;String&gt;();</span>
+
+<span class="nc bnc" id="L17" title="All 2 branches missed.">        for(int i =0 ; i&lt; tempArray.length; i++){</span>
+<span class="nc" id="L18">            StringBuilder log = new StringBuilder();</span>
+<span class="nc" id="L19">            String element = tempArray[i];</span>
+<span class="nc bnc" id="L20" title="All 4 branches missed.">            if(element.startsWith(&quot;'&quot;) &amp;&amp; element.endsWith(&quot;'&quot;)){</span>
+                //logger.info(&quot;--------------&quot;+element);
+            }
+<span class="nc" id="L23">            log.append(&quot;element:(&quot;+ruleId+&quot;)&quot;+element).append(&quot;&lt;==&gt;&quot;);</span>
+<span class="nc bnc" id="L24" title="All 4 branches missed.">            if(element.startsWith(&quot;'&quot;) &amp;&amp; element.endsWith(&quot;'&quot;) == false){</span>
+<span class="nc" id="L25">                int nexlement = i+1;</span>
+<span class="nc" id="L26">                String nextPlus = &quot;&quot;;</span>
+                try {
+<span class="nc bnc" id="L28" title="All 2 branches missed.">                    while(nextPlus.endsWith(&quot;'&quot;) == false){</span>
+
+<span class="nc" id="L30">                        String nextString = tempArray[nexlement];</span>
+<span class="nc" id="L31">                        nextPlus = tempArray[nexlement];</span>
+<span class="nc" id="L32">                        element = element +&quot; &quot;+ nextPlus;</span>
+<span class="nc" id="L33">                        nexlement = nexlement + 1;</span>
+<span class="nc" id="L34">                        log.append(&quot;---number:&quot;+nexlement+&quot; &gt;&quot;+tempArray[nexlement]).append(&quot;&lt;==&gt;&quot;);</span>
+
+<span class="nc" id="L36">                    }</span>
+<span class="nc" id="L37">                }catch(Exception e){</span>
+<span class="nc" id="L38">                    e.printStackTrace();</span>
+                    //System.out.println(&quot;Error ClientId: &quot;+eguardRequest.getId()+&quot;long:&quot;+log.toString() +&quot;, RuleId: &quot;+ruleId+&quot;, ExceptionMessage:  trace :&quot;+AppUtility.getStackTrace(e));
+<span class="nc" id="L40">                }</span>
+<span class="nc" id="L41">                i = nexlement-1;</span>
+            }
+
+            try {
+<span class="nc" id="L45">                element = element.trim();</span>
+<span class="nc bnc" id="L46" title="All 2 branches missed.">                if(element.length() == 0){</span>
+<span class="nc" id="L47">                    continue;</span>
+                }
+<span class="nc" id="L49">            }catch(Exception e){</span>
+<span class="nc" id="L50">                e.printStackTrace();</span>
+                //System.out.println(&quot;Error ClientId: &quot;+eguardRequest.getId()+&quot;, RuleId: &quot;+ruleId+&quot;, ExceptionMessage:  trace :&quot;+AppUtility.getStackTrace(e));
+<span class="nc" id="L52">            }</span>
+
+
+<span class="nc" id="L55">            elements.add(element);</span>
+        }
+<span class="nc" id="L57">        System.out.println(&quot;elements = &quot; + elements);</span>
+<span class="nc" id="L58">    }</span>
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.3.201901230119</span></div></body></html>

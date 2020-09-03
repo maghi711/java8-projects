@@ -1,0 +1,55 @@
+plugins {
+    id 'java'
+    id 'jacoco'
+}
+
+group 'com.wibmo.check'
+version '1.0-SNAPSHOT'
+
+sourceCompatibility = 1.8
+
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+    compile group: 'org.apache.poi', name: 'poi', version: '3.9'
+    compile group: 'org.apache.poi', name: 'poi-ooxml', version: '3.9'
+    compile group: 'biz.paluch.redis', name: 'lettuce', version: '4.2.0.Final'
+    // https://mvnrepository.com/artifact/com.oracle.kv/oracle-nosql-client
+    compile group: 'com.oracle.kv', name: 'oracle-nosql-client', version: '18.1.16'
+
+    compile group: 'org.openjdk.jmh', name: 'jmh-core', version: '1.19'
+    // https://mvnrepository.com/artifact/org.eclipse.swt.win32.win32/x86_64
+    compile group: 'org.openjdk.jmh', name: 'jmh-generator-annprocess', version: '1.19'
+
+    compile 'io.reactivex:rxjava:1.3.8'
+
+    // All testing library dependencies are added below
+    //testImplementation('org.hamcrest:hamcrest-library:1.3')
+    //testCompile group: 'junit', name: 'junit', version: '4.12'
+    testImplementation('org.mockito:mockito-all:1.10.19')
+    testImplementation('org.powermock:powermock-api-mockito:1.6.4')
+    testImplementation('org.powermock:powermock-module-junit4:1.6.4')
+
+    testImplementation('io.projectreactor:reactor-core:3.1.3.RELEASE')
+
+    testImplementation("junit:junit:4.13")
+    testRuntimeOnly("org.junit.vintage:junit-vintage-engine:5.6.2")
+    //testImplementation('org.junit.jupiter:junit-jupiter:5.5.2')
+    testImplementation('org.junit.jupiter:junit-jupiter-api:5.6.2')
+    testRuntimeOnly('org.junit.jupiter:junit-jupiter-engine:5.6.2')
+
+    testImplementation 'org.junit.platform:junit-platform-commons:1.5.2'
+}
+
+test {
+    useJUnitPlatform() {
+        includeTags 'fast', 'smoke & feature-a'
+        // excludeTags 'slow', 'ci'
+        includeEngines 'junit-jupiter'
+        // excludeEngines 'junit-vintage'
+        include 'com/aadavan/**'
+        exclude 'com/aadavan/**'
+    }
+}

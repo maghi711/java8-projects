@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<module external.linked.project.id="java8-projects:test" external.linked.project.path="$MODULE_DIR$/../.." external.root.project.path="$MODULE_DIR$/../.." external.system.id="GRADLE" external.system.module.group="com.wibmo.check" external.system.module.type="sourceSet" external.system.module.version="1.0-SNAPSHOT" type="JAVA_MODULE" version="4">
+  <component name="NewModuleRootManager">
+    <output-test url="file://$MODULE_DIR$/../../build/classes/java/test" />
+    <exclude-output />
+    <content url="file://$MODULE_DIR$/../../src/test">
+      <sourceFolder url="file://$MODULE_DIR$/../../src/test/java" isTestSource="true" />
+      <sourceFolder url="file://$MODULE_DIR$/../../src/test/resources" type="java-test-resource" />
+    </content>
+    <orderEntry type="inheritedJdk" />
+    <orderEntry type="sourceFolder" forTests="false" />
+    <orderEntry type="module" module-name="java8-projects.main" />
+    <orderEntry type="library" name="Gradle: org.apache.poi:poi-ooxml:3.9" level="project" />
+    <orderEntry type="library" name="Gradle: org.apache.poi:poi:3.9" level="project" />
+    <orderEntry type="library" name="Gradle: biz.paluch.redis:lettuce:4.2.0.Final" level="project" />
+    <orderEntry type="library" name="Gradle: com.oracle.kv:oracle-nosql-client:18.1.16" level="project" />
+    <orderEntry type="library" name="Gradle: org.openjdk.jmh:jmh-generator-annprocess:1.19" level="project" />
+    <orderEntry type="library" name="Gradle: org.openjdk.jmh:jmh-core:1.19" level="project" />
+    <orderEntry type="library" name="Gradle: io.reactivex:rxjava:1.3.8" level="project" />
+    <orderEntry type="library" name="Gradle: org.mockito:mockito-all:1.10.19" level="project" />
+    <orderEntry type="library" name="Gradle: org.powermock:powermock-api-mockito:1.6.4" level="project" />
+    <orderEntry type="library" name="Gradle: org.powermock:powermock-module-junit4:1.6.4" level="project" />
+    <orderEntry type="library" name="Gradle: io.projectreactor:reactor-core:3.1.3.RELEASE" level="project" />
+    <orderEntry type="library" name="Gradle: junit:junit:4.13" level="project" />
+    <orderEntry type="library" name="Gradle: org.junit.jupiter:junit-jupiter-api:5.6.2" level="project" />
+    <orderEntry type="library" name="Gradle: org.junit.platform:junit-platform-commons:1.6.2" level="project" />
+    <orderEntry type="library" name="Gradle: org.apache.poi:poi-ooxml-schemas:3.9" level="project" />
+    <orderEntry type="library" name="Gradle: dom4j:dom4j:1.6.1" level="project" />
+    <orderEntry type="library" name="Gradle: commons-codec:commons-codec:1.5" level="project" />
+    <orderEntry type="library" name="Gradle: io.netty:netty-handler:4.0.36.Final" level="project" />
+    <orderEntry type="library" name="Gradle: io.netty:netty-transport:4.0.36.Final" level="project" />
+    <orderEntry type="library" name="Gradle: io.netty:netty-common:4.0.36.Final" level="project" />
+    <orderEntry type="library" name="Gradle: com.google.guava:guava:18.0" level="project" />
+    <orderEntry type="library" name="Gradle: org.apache.avro:avro:1.7.6" level="project" />
+    <orderEntry type="library" name="Gradle: org.codehaus.jackson:jackson-mapper-asl:1.9.13" level="project" />
+    <orderEntry type="library" name="Gradle: org.codehaus.jackson:jackson-core-asl:1.9.13" level="project" />
+    <orderEntry type="library" name="Gradle: net.sf.jopt-simple:jopt-simple:4.6" level="project" />
+    <orderEntry type="library" name="Gradle: org.apache.commons:commons-math3:3.2" level="project" />
+    <orderEntry type="library" name="Gradle: org.mockito:mockito-core:1.10.19" level="project" />
+    <orderEntry type="library" name="Gradle: org.hamcrest:hamcrest-core:1.3" level="project" />
+    <orderEntry type="library" name="Gradle: org.powermock:powermock-api-support:1.6.4" level="project" />
+    <orderEntry type="library" name="Gradle: org.powermock:powermock-module-junit4-common:1.6.4" level="project" />
+    <orderEntry type="library" name="Gradle: org.reactivestreams:reactive-streams:1.0.2" level="project" />
+    <orderEntry type="library" name="Gradle: org.apiguardian:apiguardian-api:1.1.0" level="project" />
+    <orderEntry type="library" name="Gradle: org.opentest4j:opentest4j:1.2.0" level="project" />
+    <orderEntry type="library" name="Gradle: org.apache.xmlbeans:xmlbeans:2.3.0" level="project" />
+    <orderEntry type="library" name="Gradle: xml-apis:xml-apis:1.0.b2" level="project" />
+    <orderEntry type="library" name="Gradle: io.netty:netty-codec:4.0.36.Final" level="project" />
+    <orderEntry type="library" name="Gradle: io.netty:netty-buffer:4.0.36.Final" level="project" />
+    <orderEntry type="library" name="Gradle: com.thoughtworks.paranamer:paranamer:2.3" level="project" />
+    <orderEntry type="library" name="Gradle: org.xerial.snappy:snappy-java:1.0.5" level="project" />
+    <orderEntry type="library" name="Gradle: org.apache.commons:commons-compress:1.4.1" level="project" />
+    <orderEntry type="library" name="Gradle: org.slf4j:slf4j-api:1.6.4" level="project" />
+    <orderEntry type="library" name="Gradle: org.powermock:powermock-core:1.6.4" level="project" />
+    <orderEntry type="library" name="Gradle: org.powermock:powermock-reflect:1.6.4" level="project" />
+    <orderEntry type="library" name="Gradle: stax:stax-api:1.0.1" level="project" />
+    <orderEntry type="library" name="Gradle: org.tukaani:xz:1.0" level="project" />
+    <orderEntry type="library" name="Gradle: org.javassist:javassist:3.20.0-GA" level="project" />
+    <orderEntry type="library" name="Gradle: org.objenesis:objenesis:2.1" level="project" />
+    <orderEntry type="library" scope="RUNTIME" name="Gradle: org.junit.vintage:junit-vintage-engine:5.6.2" level="project" />
+    <orderEntry type="library" scope="RUNTIME" name="Gradle: org.junit.jupiter:junit-jupiter-engine:5.6.2" level="project" />
+    <orderEntry type="library" scope="RUNTIME" name="Gradle: org.junit.platform:junit-platform-engine:1.6.2" level="project" />
+  </component>
+  <component name="TestModuleProperties" production-module="java8-projects.main" />
+</module>

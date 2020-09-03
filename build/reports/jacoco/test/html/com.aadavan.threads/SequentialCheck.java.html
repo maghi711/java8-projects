@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>SequentialCheck.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">java8-projects</a> &gt; <a href="index.source.html" class="el_package">com.aadavan.threads</a> &gt; <span class="el_source">SequentialCheck.java</span></div><h1>SequentialCheck.java</h1><pre class="source lang-java linenums">package com.aadavan.threads;
+
+import java.util.HashMap;
+import java.util.Map;
+import java.util.concurrent.TimeUnit;
+
+<span class="nc" id="L7">public class SequentialCheck {</span>
+    public static void main(String[] args) {
+<span class="nc bnc" id="L9" title="All 2 branches missed.">        for (int i=1; i&lt;11; i++) {</span>
+<span class="nc" id="L10">            RuleExecutionParams params = new RuleExecutionParams(&quot;vreq-&quot; + i, new HashMap());</span>
+<span class="nc bnc" id="L11" title="All 4 branches missed.">            if (i == 7 || i == 5) {</span>
+<span class="nc" id="L12">                RuleExecutor p = new RuleExecutor(i, true, i * 2, params);</span>
+<span class="nc" id="L13">                Thread t = new Thread(p);</span>
+<span class="nc" id="L14">                t.start();</span>
+<span class="nc" id="L15">            } else {</span>
+<span class="nc" id="L16">                RuleExecutor p = new RuleExecutor(i, false, 0, params);</span>
+<span class="nc" id="L17">                p.run();</span>
+            }
+        }
+<span class="nc" id="L20">    }</span>
+
+    static class RuleExecutor implements Runnable {
+        private int i;
+        private RuleExecutionParams params;
+        private boolean wait;
+        private long waitTime;
+
+<span class="nc" id="L28">        RuleExecutor(int i, boolean wait, long waitTime, RuleExecutionParams params) {</span>
+<span class="nc" id="L29">            this.i = i;</span>
+<span class="nc" id="L30">            this.wait = wait;</span>
+<span class="nc" id="L31">            this.waitTime = waitTime;</span>
+<span class="nc" id="L32">            this.params = params;</span>
+<span class="nc" id="L33">        }</span>
+
+        @Override
+        public void run() {
+<span class="nc bnc" id="L37" title="All 2 branches missed.">            if (wait) {</span>
+                try {
+<span class="nc" id="L39">                    System.out.println(&quot;Waiting for &quot; + i + &quot; SECONDS.&quot;);</span>
+<span class="nc" id="L40">                    TimeUnit.SECONDS.sleep(waitTime);</span>
+<span class="nc" id="L41">                } catch (InterruptedException e) {</span>
+<span class="nc" id="L42">                    e.printStackTrace();</span>
+<span class="nc" id="L43">                }</span>
+            }
+<span class="nc" id="L45">            System.out.println(&quot;Executing Rule, Number is &quot; + i); // use that params here</span>
+<span class="nc" id="L46">            System.out.println(&quot;for Rule number &quot; + i + &quot; the params = &quot; + params);</span>
+<span class="nc" id="L47">        }</span>
+    }
+
+    static class RuleExecutionParams {
+        String vreq;
+        Map vreqMap;
+
+<span class="nc" id="L54">        public RuleExecutionParams(String vreq, Map vreqMap) {</span>
+<span class="nc" id="L55">            this.vreq = vreq;</span>
+<span class="nc" id="L56">            this.vreqMap = vreqMap;</span>
+<span class="nc" id="L57">        }</span>
+
+        public String getVreq() {
+<span class="nc" id="L60">            return vreq;</span>
+        }
+
+        public Map getVreqMap() {
+<span class="nc" id="L64">            return vreqMap;</span>
+        }
+
+        @Override
+        public String toString() {
+<span class="nc" id="L69">            final StringBuilder sb = new StringBuilder(&quot;RuleExecutionParams{&quot;);</span>
+<span class="nc" id="L70">            sb.append(&quot;vreq='&quot;).append(vreq).append('\'');</span>
+<span class="nc" id="L71">            sb.append(&quot;, vreqMap=&quot;).append(vreqMap);</span>
+<span class="nc" id="L72">            sb.append('}');</span>
+<span class="nc" id="L73">            return sb.toString();</span>
+        }
+    }
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.3.201901230119</span></div></body></html>

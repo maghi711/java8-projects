@@ -1,0 +1,18 @@
+redisList:
+  - ip: 192.168.106.69
+    port: 6379
+    duration: 100000
+    username: trident
+    password: trident
+
+  - ip: 192.168.105.152
+    port: 6381
+    duration: 100000
+    username: trident
+    password: trident
+
+  - ip: 192.168.105.152
+    port: 6384
+    duration: 100000
+    username: trident
+    password: trident

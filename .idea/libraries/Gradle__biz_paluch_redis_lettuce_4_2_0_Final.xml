@@ -1,0 +1,13 @@
+<component name="libraryTable">
+  <library name="Gradle: biz.paluch.redis:lettuce:4.2.0.Final">
+    <CLASSES>
+      <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/biz.paluch.redis/lettuce/4.2.0.Final/fae846a576a52d6e594ae73459989a95c61218af/lettuce-4.2.0.Final.jar!/" />
+      <root url="jar://$PROJECT_DIR$/../../.gradle/caches/modules-2/files-2.1/biz.paluch.redis/lettuce/4.2.0.Final/fae846a576a52d6e594ae73459989a95c61218af/lettuce-4.2.0.Final.jar!/" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES>
+      <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/biz.paluch.redis/lettuce/4.2.0.Final/5fcd8511052bf19ebdd43d79262ea54310fbe4b/lettuce-4.2.0.Final-sources.jar!/" />
+      <root url="jar://$PROJECT_DIR$/../../.gradle/caches/modules-2/files-2.1/biz.paluch.redis/lettuce/4.2.0.Final/5fcd8511052bf19ebdd43d79262ea54310fbe4b/lettuce-4.2.0.Final-sources.jar!/" />
+    </SOURCES>
+  </library>
+</component>

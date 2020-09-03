@@ -1,0 +1,285 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>FunctionHelper.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">java8-projects</a> &gt; <a href="index.source.html" class="el_package">jeval.function</a> &gt; <span class="el_source">FunctionHelper.java</span></div><h1>FunctionHelper.java</h1><pre class="source lang-java linenums">/*
+ * Copyright 2002-2007 Robert Breidecker.
+ * 
+ * Licensed under the Apache License, Version 2.0 (the &quot;License&quot;);
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ * 
+ *      http://www.apache.org/licenses/LICENSE-2.0
+ * 
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an &quot;AS IS&quot; BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
+
+package jeval.function;
+
+import jeval.ArgumentTokenizer;
+
+import java.util.ArrayList;
+
+/**
+ * This class contains many methods that are helpful when writing functions.
+ * Some of these methods were created to help with the creation of the math and
+ * string functions packaged with Evaluator.
+ */
+<span class="nc" id="L28">public class FunctionHelper {</span>
+
+	/**
+	 * This method first removes any white space at the beginning and end of the
+	 * input string. It then removes the specified quote character from the the
+	 * first and last characters of the string if a quote character exists in
+	 * those positions. If quote characters are not in the first and last
+	 * positions after the white space is trimmed, then a FunctionException will
+	 * be thrown.
+	 * 
+	 * @param arguments
+	 *            The arguments to trim and revove quote characters from.
+	 * @param quoteCharacter
+	 *            The character to remove from the first and last position of
+	 *            the trimmed string.
+	 * 
+	 * @return The arguments with white space and quote characters removed.
+	 * 
+	 * @exception FunctionException
+	 *                Thrown if quote characters do not exist in the first and
+	 *                last positions after the white space is trimmed.
+	 */
+	public static String trimAndRemoveQuoteChars(final String arguments,
+			final char quoteCharacter) throws FunctionException {
+
+<span class="nc" id="L53">		String trimmedArgument = arguments;</span>
+
+<span class="nc" id="L55">		trimmedArgument = trimmedArgument.trim();</span>
+
+<span class="nc bnc" id="L57" title="All 2 branches missed.">		if (trimmedArgument.charAt(0) == quoteCharacter) {</span>
+<span class="nc" id="L58">			trimmedArgument = trimmedArgument.substring(1, trimmedArgument</span>
+<span class="nc" id="L59">					.length());</span>
+		} else {
+<span class="nc" id="L61">			throw new FunctionException(&quot;Value does not start with a quote.&quot;);</span>
+		}
+
+<span class="nc bnc" id="L64" title="All 2 branches missed.">		if (trimmedArgument.charAt(trimmedArgument.length() - 1) == quoteCharacter) {</span>
+<span class="nc" id="L65">			trimmedArgument = trimmedArgument.substring(0, trimmedArgument</span>
+<span class="nc" id="L66">					.length() - 1);</span>
+		} else {
+<span class="nc" id="L68">			throw new FunctionException(&quot;Value does not end with a quote.&quot;);</span>
+		}
+
+<span class="nc" id="L71">		return trimmedArgument;</span>
+	}
+
+	/**
+	 * This methods takes a string of input function arguments, evaluates each
+	 * argument and creates a Double value for each argument from the result of
+	 * the evaluations.
+	 * 
+	 * @param arguments
+	 *            The arguments to parse.
+	 * @param delimiter
+	 *            The delimiter to use while parsing.
+	 * 
+	 * @return An array list of Double values found in the input string.
+	 * 
+	 * @exception FunctionException
+	 *                Thrown if the string does not properly parse into Double
+	 *                values.
+	 */
+	public static ArrayList getDoubles(final String arguments,
+			final char delimiter) throws FunctionException {
+
+<span class="nc" id="L93">		ArrayList returnValues = new ArrayList();</span>
+
+		try {
+
+<span class="nc" id="L97">			final ArgumentTokenizer tokenizer = new ArgumentTokenizer(</span>
+					arguments, delimiter);
+
+<span class="nc bnc" id="L100" title="All 2 branches missed.">			while (tokenizer.hasMoreTokens()) {</span>
+<span class="nc" id="L101">				final String token = tokenizer.nextToken().trim();</span>
+<span class="nc" id="L102">				returnValues.add(new Double(token));</span>
+<span class="nc" id="L103">			}</span>
+<span class="nc" id="L104">		} catch (Exception e) {</span>
+<span class="nc" id="L105">			throw new FunctionException(&quot;Invalid values in string.&quot;, e);</span>
+<span class="nc" id="L106">		}</span>
+
+<span class="nc" id="L108">		return returnValues;</span>
+	}
+
+	/**
+	 * This methods takes a string of input function arguments, evaluates each
+	 * argument and creates a String value for each argument from the result of
+	 * the evaluations.
+	 * 
+	 * @param arguments
+	 *            The arguments of values to parse.
+	 * @param delimiter
+	 *            The delimiter to use while parsing.
+	 * 
+	 * @return An array list of String values found in the input string.
+	 * 
+	 * @exception FunctionException
+	 *                Thrown if the stirng does not properly parse into String
+	 *                values.
+	 */
+	public static ArrayList getStrings(final String arguments,
+			final char delimiter) throws FunctionException {
+
+<span class="nc" id="L130">		final ArrayList returnValues = new ArrayList();</span>
+
+		try {
+<span class="nc" id="L133">			ArgumentTokenizer tokenizer = new ArgumentTokenizer(arguments,</span>
+					delimiter);
+
+<span class="nc bnc" id="L136" title="All 2 branches missed.">			while (tokenizer.hasMoreTokens()) {</span>
+<span class="nc" id="L137">				final String token = tokenizer.nextToken();</span>
+<span class="nc" id="L138">				returnValues.add(token);</span>
+<span class="nc" id="L139">			}</span>
+<span class="nc" id="L140">		} catch (Exception e) {</span>
+<span class="nc" id="L141">			throw new FunctionException(&quot;Invalid values in string.&quot;, e);</span>
+<span class="nc" id="L142">		}</span>
+
+<span class="nc" id="L144">		return returnValues;</span>
+	}
+
+	/**
+	 * This methods takes a string of input function arguments, evaluates each
+	 * argument and creates a one Integer and one String value for each argument
+	 * from the result of the evaluations.
+	 * 
+	 * @param arguments
+	 *            The arguments of values to parse.
+	 * @param delimiter
+	 *            The delimiter to use while parsing.
+	 * 
+	 * @return An array list of object values found in the input string.
+	 * 
+	 * @exception FunctionException
+	 *                Thrown if the stirng does not properly parse into the
+	 *                proper objects.
+	 */
+	public static ArrayList getOneStringAndOneInteger(final String arguments,
+			final char delimiter) throws FunctionException {
+
+<span class="nc" id="L166">		ArrayList returnValues = new ArrayList();</span>
+
+		try {
+<span class="nc" id="L169">			final ArgumentTokenizer tokenizer = new ArgumentTokenizer(</span>
+					arguments, delimiter);
+
+<span class="nc" id="L172">			int tokenCtr = 0;</span>
+<span class="nc bnc" id="L173" title="All 2 branches missed.">			while (tokenizer.hasMoreTokens()) {</span>
+<span class="nc bnc" id="L174" title="All 2 branches missed.">				if (tokenCtr == 0) {</span>
+<span class="nc" id="L175">					final String token = tokenizer.nextToken();</span>
+<span class="nc" id="L176">					returnValues.add(token);</span>
+<span class="nc bnc" id="L177" title="All 2 branches missed.">				} else if (tokenCtr == 1) {</span>
+<span class="nc" id="L178">					final String token = tokenizer.nextToken().trim();</span>
+<span class="nc" id="L179">					returnValues.add(new Integer(new Double(token).intValue()));</span>
+<span class="nc" id="L180">				} else {</span>
+<span class="nc" id="L181">					throw new FunctionException(&quot;Invalid values in string.&quot;);</span>
+				}
+
+<span class="nc" id="L184">				tokenCtr++;</span>
+			}
+<span class="nc" id="L186">		} catch (Exception e) {</span>
+<span class="nc" id="L187">			throw new FunctionException(&quot;Invalid values in string.&quot;, e);</span>
+<span class="nc" id="L188">		}</span>
+
+<span class="nc" id="L190">		return returnValues;</span>
+	}
+
+	/**
+	 * This methods takes a string of input function arguments, evaluates each
+	 * argument and creates a two Strings and one Integer value for each
+	 * argument from the result of the evaluations.
+	 * 
+	 * @param arguments
+	 *            The arguments of values to parse.
+	 * @param delimiter
+	 *            The delimiter to use while parsing.
+	 * 
+	 * @return An array list of object values found in the input string.
+	 * 
+	 * @exception FunctionException
+	 *                Thrown if the stirng does not properly parse into the
+	 *                proper objects.
+	 */
+	public static ArrayList getTwoStringsAndOneInteger(final String arguments,
+			final char delimiter) throws FunctionException {
+
+<span class="nc" id="L212">		final ArrayList returnValues = new ArrayList();</span>
+
+		try {
+<span class="nc" id="L215">			final ArgumentTokenizer tokenizer = new ArgumentTokenizer(</span>
+					arguments, delimiter);
+
+<span class="nc" id="L218">			int tokenCtr = 0;</span>
+<span class="nc bnc" id="L219" title="All 2 branches missed.">			while (tokenizer.hasMoreTokens()) {</span>
+<span class="nc bnc" id="L220" title="All 4 branches missed.">				if (tokenCtr == 0 || tokenCtr == 1) {</span>
+<span class="nc" id="L221">					final String token = tokenizer.nextToken();</span>
+<span class="nc" id="L222">					returnValues.add(token);</span>
+<span class="nc bnc" id="L223" title="All 2 branches missed.">				} else if (tokenCtr == 2) {</span>
+<span class="nc" id="L224">					final String token = tokenizer.nextToken().trim();</span>
+<span class="nc" id="L225">					returnValues.add(new Integer(new Double(token).intValue()));</span>
+<span class="nc" id="L226">				} else {</span>
+<span class="nc" id="L227">					throw new FunctionException(&quot;Invalid values in string.&quot;);</span>
+				}
+
+<span class="nc" id="L230">				tokenCtr++;</span>
+			}
+<span class="nc" id="L232">		} catch (Exception e) {</span>
+<span class="nc" id="L233">			throw new FunctionException(&quot;Invalid values in string.&quot;, e);</span>
+<span class="nc" id="L234">		}</span>
+
+<span class="nc" id="L236">		return returnValues;</span>
+	}
+
+	/**
+	 * This methods takes a string of input function arguments, evaluates each
+	 * argument and creates a one String and two Integers value for each
+	 * argument from the result of the evaluations.
+	 * 
+	 * @param arguments
+	 *            The arguments of values to parse.
+	 * @param delimiter
+	 *            The delimiter to use while parsing.
+	 * 
+	 * @return An array list of object values found in the input string.
+	 * 
+	 * @exception FunctionException
+	 *                Thrown if the stirng does not properly parse into the
+	 *                proper objects.
+	 */
+	public static ArrayList getOneStringAndTwoIntegers(final String arguments,
+			final char delimiter) throws FunctionException {
+
+<span class="nc" id="L258">		final ArrayList returnValues = new ArrayList();</span>
+
+		try {
+<span class="nc" id="L261">			final ArgumentTokenizer tokenizer = new ArgumentTokenizer(</span>
+					arguments, delimiter);
+
+<span class="nc" id="L264">			int tokenCtr = 0;</span>
+<span class="nc bnc" id="L265" title="All 2 branches missed.">			while (tokenizer.hasMoreTokens()) {</span>
+<span class="nc bnc" id="L266" title="All 2 branches missed.">				if (tokenCtr == 0) {</span>
+<span class="nc" id="L267">					final String token = tokenizer.nextToken().trim();</span>
+<span class="nc" id="L268">					returnValues.add(token);</span>
+<span class="nc bnc" id="L269" title="All 4 branches missed.">				} else if (tokenCtr == 1 || tokenCtr == 2) {</span>
+<span class="nc" id="L270">					final String token = tokenizer.nextToken().trim();</span>
+<span class="nc" id="L271">					returnValues.add(new Integer(new Double(token).intValue()));</span>
+<span class="nc" id="L272">				} else {</span>
+<span class="nc" id="L273">					throw new FunctionException(&quot;Invalid values in string.&quot;);</span>
+				}
+
+<span class="nc" id="L276">				tokenCtr++;</span>
+			}
+<span class="nc" id="L278">		} catch (Exception e) {</span>
+<span class="nc" id="L279">			throw new FunctionException(&quot;Invalid values in string.&quot;, e);</span>
+<span class="nc" id="L280">		}</span>
+
+<span class="nc" id="L282">		return returnValues;</span>
+	}
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.3.201901230119</span></div></body></html>

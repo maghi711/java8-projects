@@ -1,0 +1,178 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>EvaluationResult.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">java8-projects</a> &gt; <a href="index.source.html" class="el_package">jeval</a> &gt; <span class="el_source">EvaluationResult.java</span></div><h1>EvaluationResult.java</h1><pre class="source lang-java linenums">/*
+ * Copyright 2002-2007 Robert Breidecker.
+ * 
+ * Licensed under the Apache License, Version 2.0 (the &quot;License&quot;);
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ * 
+ *      http://www.apache.org/licenses/LICENSE-2.0
+ * 
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an &quot;AS IS&quot; BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
+
+package jeval;
+
+/**
+ * This class can be used to wrap the result of an expression evaluation. It
+ * contains useful methods for evaluating the contents of the result.
+ */
+public class EvaluationResult {
+
+	// The value returned from the evaluation of an expression.
+	private String result;
+
+	// The quote character specified in the evaluation of the expression.
+	private char quoteCharacter;
+
+	/**
+	 * Constructor.
+	 * 
+	 * @param result
+	 *            The value returned from the evaluation of an expression.
+	 * @param quoteCharacter
+	 *            The quote character specified in the evaluation of the
+	 *            expression.
+	 */
+<span class="nc" id="L40">	public EvaluationResult(String result, char quoteCharacter) {</span>
+
+<span class="nc" id="L42">		this.result = result;</span>
+<span class="nc" id="L43">		this.quoteCharacter = quoteCharacter;</span>
+<span class="nc" id="L44">	}</span>
+
+	/**
+	 * Returns the quote character.
+	 * 
+	 * @return The quote character.
+	 */
+	public char getQuoteCharacter() {
+<span class="nc" id="L52">		return quoteCharacter;</span>
+	}
+
+	/**
+	 * Sets the quote character.
+	 * 
+	 * @param quoteCharacter
+	 *            The quoteCharacter to set.
+	 */
+	public void setQuoteCharacter(char quoteCharacter) {
+<span class="nc" id="L62">		this.quoteCharacter = quoteCharacter;</span>
+<span class="nc" id="L63">	}</span>
+
+	/**
+	 * Returns the result value.
+	 * 
+	 * @return The result value.
+	 */
+	public String getResult() {
+<span class="nc" id="L71">		return result;</span>
+	}
+
+	/**
+	 * Sets the result value.
+	 * 
+	 * @param result
+	 *            The result to set.
+	 */
+	public void setResult(String result) {
+<span class="nc" id="L81">		this.result = result;</span>
+<span class="nc" id="L82">	}</span>
+
+	/**
+	 * Returns true if the result value is equal to the value of a Boolean true
+	 * string (1.0).
+	 * 
+	 * @return True if the result value is equal to the value of a Boolean true
+	 *         string (1.0).
+	 */
+	public boolean isBooleanTrue() {
+
+<span class="nc bnc" id="L93" title="All 2 branches missed.">		if (result != null</span>
+<span class="nc bnc" id="L94" title="All 2 branches missed.">				&amp;&amp; EvaluationConstants.BOOLEAN_STRING_TRUE.equals(result)) {</span>
+
+<span class="nc" id="L96">			return true;</span>
+		}
+
+<span class="nc" id="L99">		return false;</span>
+	}
+
+	/**
+	 * Returns true if the result value is equal to the value of a Boolean false
+	 * string (0.0).
+	 * 
+	 * @return True if the result value is equal to the value of a Boolean false
+	 *         string (0.0).
+	 */
+	public boolean isBooleanFalse() {
+
+<span class="nc bnc" id="L111" title="All 2 branches missed.">		if (result != null</span>
+<span class="nc bnc" id="L112" title="All 2 branches missed.">				&amp;&amp; EvaluationConstants.BOOLEAN_STRING_FALSE.equals(result)) {</span>
+
+<span class="nc" id="L114">			return true;</span>
+		}
+
+<span class="nc" id="L117">		return false;</span>
+	}
+
+	/**
+	 * Returns true if the result value starts with a quote character and ends
+	 * with a quote character.
+	 * 
+	 * @return True if the result value starts with a quote character and ends
+	 *         with a quote character.
+	 */
+	public boolean isString() {
+
+<span class="nc bnc" id="L129" title="All 4 branches missed.">		if (result != null &amp;&amp; result.length() &gt;= 2) {</span>
+
+<span class="nc bnc" id="L131" title="All 2 branches missed.">			if (result.charAt(0) == quoteCharacter</span>
+<span class="nc bnc" id="L132" title="All 2 branches missed.">					&amp;&amp; result.charAt(result.length() - 1) == quoteCharacter) {</span>
+
+<span class="nc" id="L134">				return true;</span>
+			}
+		}
+
+<span class="nc" id="L138">		return false;</span>
+	}
+
+	/**
+	 * Returns a Double for the result value.
+	 * 
+	 * @return A Double for the result value.
+	 * 
+	 * @throws NumberFormatException
+	 *             Thrown if the result value is not a double.
+	 */
+	public Double getDouble() throws NumberFormatException {
+
+<span class="nc" id="L151">		return new Double(result);</span>
+	}
+
+	/**
+	 * Returns the unwrapped string for the result value. An unwrapped string is
+	 * a string value without the quote characters that wrap the result value.
+	 * For a string to be returned, then the first character must be a quote
+	 * character and the last character must be a quote character. Otherwise, a
+	 * null value is returned.
+	 * 
+	 * @return The normal string for the result value. Null will be returned if
+	 *         the result value is not of a string type.
+	 */
+	public String getUnwrappedString() {
+
+<span class="nc bnc" id="L166" title="All 4 branches missed.">		if (result != null &amp;&amp; result.length() &gt;= 2) {</span>
+
+<span class="nc bnc" id="L168" title="All 2 branches missed.">			if (result.charAt(0) == quoteCharacter</span>
+<span class="nc bnc" id="L169" title="All 2 branches missed.">					&amp;&amp; result.charAt(result.length() - 1) == quoteCharacter) {</span>
+
+<span class="nc" id="L171">				return result.substring(1, result.length() - 1);</span>
+			}
+		}
+
+<span class="nc" id="L175">		return null;</span>
+	}
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.3.201901230119</span></div></body></html>
