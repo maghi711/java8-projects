@@ -15,7 +15,7 @@ repositories {
 dependencies {
     compile group: 'org.apache.poi', name: 'poi', version: '3.9'
     compile group: 'org.apache.poi', name: 'poi-ooxml', version: '3.9'
-    compile group: 'biz.paluch.redis', name: 'lettuce', version: '4.2.0.Final'
+    compile group: 'biz.paluch.redis', name: 'lettuce', version: '4.5.0.Final'
     // https://mvnrepository.com/artifact/com.oracle.kv/oracle-nosql-client
     compile group: 'com.oracle.kv', name: 'oracle-nosql-client', version: '18.1.16'
 
