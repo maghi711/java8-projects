@@ -7,7 +7,6 @@ package com.aadavan.dsa._1_chapterOne;
 public class _1_BinarySearch {
 
     public static void main(String[] args) {
-
         int[] a = {22, 33, 44, 55, 66, 77};
         int searchElement = 44;
         System.out.println("search element (" + searchElement + ") is placed at (" + search(a, 44) + ") position in the array.");
@@ -20,13 +19,13 @@ public class _1_BinarySearch {
         int low = 0;
         int high = a.length;
         while (low < high) {
-            int i = (low + high) / 2;
-            if (a[i] == element) {
-                return i;
-            } else if (a[i] < element) {
-                low = i+1;
+            int mid = (low + high) / 2;
+            if (a[mid] == element) {
+                return mid;
+            } else if (a[mid] < element) {
+                low = mid+1;
             } else {
-                high = i;
+                high = mid;
             }
         }
         return -1;
