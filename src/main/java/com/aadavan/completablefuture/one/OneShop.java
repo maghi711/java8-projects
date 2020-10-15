@@ -47,9 +47,12 @@ public class OneShop {
     }
 
     private double calculatePrice(String product) {
-        delay(3);
-        if (true)
-            throw new RuntimeException("No prouct info available");
+        delay(1);
+        /*
+        if ("Flipkart".equalsIgnoreCase(product)) {
+            throw new RuntimeException("Unavailable");
+        }
+        */
         return new Random().nextDouble() * product.charAt(0) + product.charAt(1);
     }
 

@@ -7,6 +7,9 @@ public class _1_WelcomeRxJava {
         final String message = "Welcome Aadavan to RxJava";
         String result=null;
         Observable<String> observable = Observable.just(message);
-        //observable.subscribe(s -> System.out::println);
+        observable.subscribe(
+            s -> {
+                System.out.println(s);
+            });
     }
 }

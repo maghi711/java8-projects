@@ -10,9 +10,11 @@ public class MonoCheck {
     @Test
     public void firstMono() {
         System.out.println("Mono test");
-        Mono.just("A").log().subscribe(
-                a -> System.out.println(a)
-        );
+        Mono.just("A")
+                .log()
+                .subscribe(
+                    a -> System.out.println(a)
+                );
     }
 
     @Test
