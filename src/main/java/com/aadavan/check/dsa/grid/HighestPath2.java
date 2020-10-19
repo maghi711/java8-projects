@@ -12,17 +12,19 @@ public class HighestPath2 {
         for(int i=0; i<r;i++) {
             if (m[i][0] == 1)
                 dp[i][0] = 1;
-            else
+            else {
                 dp[i][0] = 0;
-            break;
+                break;
+            }
         }
         // Fill all firt column
         for (int j=0; j<c; j++) {
             if(m[0][j] == 1)
                 dp[0][j] = 1;
-            else
+            else {
                 dp[0][j] = 0;
-            break;
+                break;
+            }
         }
         // Now handle the remaining row and columns
         for (int i = 1; i<r; i++) {
