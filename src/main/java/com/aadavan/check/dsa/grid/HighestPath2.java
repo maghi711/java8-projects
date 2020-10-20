@@ -17,7 +17,7 @@ public class HighestPath2 {
                 break;
             }
         }
-        // Fill all firt column
+        // Fill all first column
         for (int j=0; j<c; j++) {
             if(m[0][j] == 1)
                 dp[0][j] = 1;
