@@ -2,12 +2,12 @@ package com.aadavan.check.dsa.dp.counting;
 
 import java.util.Scanner;
 
-public class CountNumberOfNubmbers124 {
+public class CountNumberOfNubmbers134 {
 
     static Scanner sc = new Scanner(System.in);
     public static void main(String[] args)
     {
-        BeingZero124 bz = new BeingZero124();
+        BeingZero134 bz = new BeingZero134();
         int t = sc.nextInt();
 
         while(t--!=0)
@@ -18,7 +18,8 @@ public class CountNumberOfNubmbers124 {
     }
 
 }
-class BeingZero124 {
+
+class BeingZero134 {
 
     int MOD = (int)1e9+7;
     long sumMOD(long a, long b){
@@ -27,11 +28,11 @@ class BeingZero124 {
     long dp[] = new long[100];
     void precompute() {
         dp[1] = 1l;
-        dp[2] = 2l;
-        dp[3] = 3l;
-        dp[4] = 6l;
+        dp[2] = 1l;
+        dp[3] = 2l;
+        dp[4] = 4l;
         for (int i = 5; i <dp.length; i++) {
-            dp[i] = sumMOD(sumMOD(dp[i-1],dp[i-2]), dp[i-4]);
+            dp[i] = sumMOD(sumMOD(dp[i-1],dp[i-3]), dp[i-4]);
         }
     }
     {
