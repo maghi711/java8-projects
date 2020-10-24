@@ -13,16 +13,18 @@ public class Problem_01 {
         Scanner sc = new Scanner(System.in);
         int t = sc.nextInt();
         while (t-- != 0) {
-            int number = sc.nextInt();
-            int size = sc.nextInt();
-            Item[] items = new Item[size];
-            for (int i = 0; i < size; i++) {
+            int capacity = sc.nextInt();
+            int arraySize = sc.nextInt();
+            Item[] items = new Item[arraySize];
+            // init values
+            for (int i = 0; i < arraySize; i++) {
                 items[i] = new Item(0, sc.nextInt());
             }
-            for (int i = 0; i < size; i++) {
+            // init weight
+            for (int i = 0; i < arraySize; i++) {
                 items[i].weight = sc.nextInt();
             }
-            System.out.println(maxValue(items, number));
+            System.out.println(maxValue(items, capacity));
         }
     }
     static int maxValue(int capacity, int size) {
