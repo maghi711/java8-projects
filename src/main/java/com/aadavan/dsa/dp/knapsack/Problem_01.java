@@ -43,7 +43,7 @@ public class Problem_01 {
         return -1;
     }
     static int maxValue(Item[] items, int capacity) {
-        // Initialize the 2D array with -1
+        // Initialize the 2D DP array with -1
         for(int[] a : dp) {
             Arrays.fill(a, -1);
         }
