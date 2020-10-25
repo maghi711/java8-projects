@@ -64,4 +64,9 @@ test {
         include 'com/aadavan/**'
         exclude 'com/aadavan/**'
     }
+    task getHomeDir {
+        doLast {
+            println gradle.gradleHomeDir
+        }
+    }
 }
