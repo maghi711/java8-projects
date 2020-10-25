@@ -8,7 +8,7 @@ import java.util.*;
 import java.util.concurrent.*;
 import java.util.regex.*;
 
-public class KnapsackUnbounded {
+public class _05_KnapsackUnbounded {
     // Complete the unboundedKnapsack function below.
     static int unboundedKnapsack(int k, int[] arr) {
         int n = arr.length;

@@ -3,7 +3,7 @@ package com.aadavan.dsa.dp.contest2;
 import java.util.Arrays;
 import java.util.Scanner;
 
-public class RangeSum {
+public class _01_RangeSum {
     public static void main(String[] args) {
         Scanner s = new Scanner(System.in);
         int t = s.nextInt();
