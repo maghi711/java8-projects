@@ -3,7 +3,10 @@ package com.aadavan.dsa.dp.lcs;
 import java.util.Arrays;
 import java.util.Scanner;
 
-public class LCSProblem {
+/**
+ * Longest subsequence problem. LCS LIS
+ */
+public class LCSProblemTopDown {
     public static void main(String[] args) {
         Scanner scanner = new Scanner(System.in);
         int t = Integer.parseInt(scanner.nextLine());
@@ -38,7 +41,7 @@ public class LCSProblem {
 }
 
 /*
-// Submitted code
+// Submitted code - Top Down logic
 char[] ga;
 char[] gb;
 int[][] dp = new int[101][101];
