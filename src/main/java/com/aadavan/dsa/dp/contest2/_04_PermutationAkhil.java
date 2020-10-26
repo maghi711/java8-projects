@@ -2,6 +2,10 @@ package com.aadavan.dsa.dp.contest2;
 
 import java.util.*;
 
+/*
+    INPUT:  LLl6e
+    OUTPUT: LLL6E LLL6e LLl6E LLl6e LlL6E LlL6e Lll6E Lll6e lLL6E lLL6e lLl6E lLl6e llL6E llL6e lll6E lll6e
+ */
 public class _04_PermutationAkhil {
     static List<String> output = new ArrayList<>();
     public static void main(String[] args) {

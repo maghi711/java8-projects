@@ -4,7 +4,7 @@ import java.util.Arrays;
 import java.util.Scanner;
 
 
-public class Problem_01 {
+public class KnapsackProblem_01 {
     static int ROWS= 3001;
     static int COLS = 3001;
     static int dp [][] = new int[ROWS][COLS];
@@ -27,6 +27,7 @@ public class Problem_01 {
             System.out.println(maxValue(items, capacity));
         }
     }
+
     static int maxValue(int capacity, int size) {
         // Base and Boundary case are handled here
         if (capacity <=0 || size <= 0)
@@ -39,9 +40,11 @@ public class Problem_01 {
         dp[size][capacity] = Math.max( it[size1].value + maxValue(capacity-it[size1].weight, size1), maxValue(capacity, size1));
         return dp[size][capacity];
     }
+
     static int maxValueBottomUp(Item[] items, int capacity) {
         return -1;
     }
+
     static int maxValue(Item[] items, int capacity) {
         // Initialize the 2D DP array with -1
         for(int[] a : dp) {
