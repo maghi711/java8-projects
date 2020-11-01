@@ -14,9 +14,9 @@ public class _4_FillLowerTriangularMatrix {
 
     static void fillLowerTriangularMatrix(List<List<Integer>> list) {
         int n = list.size();
-        for (int i = 2; i < 3; i++) {
+        for (int i = 1; i < n; i++) {
             System.out.println(i + " " + list.get(i).get(i));
-            for (int j = n-1; j <= 0; j--) {
+            for (int j = n-1; j >= 0; j--) {
                 if (j >= i) {
                     continue;
                 }
