@@ -24,15 +24,21 @@ public class _7_PrintMatrixSpirally {
     }
 
     static void fillSpirally(int[][] a) {
+        /*
+            k - starting row index
+            m - ending row index
+            l - starting column index
+            n - ending column index
+		*/
         int m = a.length;
         int n = a[0].length;
         int k = 0;
         int l = 0;
         int i;
-        int number = 2;
+        int number = 1;
         while (k < m && l < n) {
             for (i = l; i < n; ++i) {
-                    a[k][i] = number++;
+                a[k][i] = number++;
             }
             k++;
             // Print the last column from the remaining
