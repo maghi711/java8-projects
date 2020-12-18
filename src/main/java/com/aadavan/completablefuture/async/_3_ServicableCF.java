@@ -5,13 +5,14 @@ import com.aadavan.completablefuture.utils.ThreadUtils;
 import java.util.concurrent.CompletableFuture;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
+import java.util.concurrent.TimeUnit;
 import java.util.function.Supplier;
 
 public class _3_ServicableCF {
     public static void main(String[] args) {
         _3_ServicableCF instance = new _3_ServicableCF();
         Supplier<String> stringSupplier = () -> {
-            ThreadUtils.delay(1);
+            ThreadUtils.delay(1, TimeUnit.SECONDS);
             return Thread.currentThread().getName();
         };
         //instance.plain(stringSupplier);;

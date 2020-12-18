@@ -33,7 +33,7 @@ public class TwoShopClient {
     }
 
     static void doSomeOtherOperation() {
-        ThreadUtils.delay(6);
+        ThreadUtils.delay(6, TimeUnit.SECONDS);
     }
 
     static TwoShop buildShop(String shopName) {

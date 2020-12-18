@@ -5,6 +5,7 @@ import com.aadavan.completablefuture.utils.ThreadUtils;
 import java.util.Random;
 import java.util.concurrent.CompletableFuture;
 import java.util.concurrent.Future;
+import java.util.concurrent.TimeUnit;
 
 public class TwoShop {
     private String name;
@@ -45,7 +46,7 @@ public class TwoShop {
     }
 
     private double calculatePrice(String product) {
-        ThreadUtils.delay(10);
+        ThreadUtils.delay(10, TimeUnit.SECONDS);
         if (false)
             throw new RuntimeException("Testing");
         return random.nextDouble() * product.charAt(0) + product.charAt(1);
