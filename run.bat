@@ -1,0 +1,1 @@
+gradle build & cd build\classes\java\main\ & java com.aadavan.dsa.dp.knapsack.HasSumSubset_01 < D:\code\testcases\hasSumTestCase.txt && cd ..\..\..\..
