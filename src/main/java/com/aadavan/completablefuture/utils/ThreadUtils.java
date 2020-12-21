@@ -4,9 +4,9 @@ import java.util.concurrent.TimeUnit;
 
 public class ThreadUtils {
 
-    public static void delay(long seconds) {
+    public static void delay(long seconds, TimeUnit t) {
         try {
-            TimeUnit.SECONDS.sleep(seconds);
+            t.sleep(seconds);
         } catch (InterruptedException e) {
             e.printStackTrace();
         }

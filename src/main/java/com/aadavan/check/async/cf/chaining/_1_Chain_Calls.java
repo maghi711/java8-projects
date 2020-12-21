@@ -5,6 +5,7 @@ import com.aadavan.completablefuture.utils.ThreadUtils;
 import java.util.Arrays;
 import java.util.List;
 import java.util.concurrent.CompletableFuture;
+import java.util.concurrent.TimeUnit;
 import java.util.function.Consumer;
 import java.util.function.Function;
 import java.util.function.Supplier;
@@ -32,6 +33,6 @@ public class _1_Chain_Calls {
 
         CompletableFuture.supplyAsync(ids).thenApply(users).thenAccept(printUsers);
 
-        ThreadUtils.delay(1);
+        ThreadUtils.delay(1, TimeUnit.SECONDS);
     }
 }
