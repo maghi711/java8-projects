@@ -4,7 +4,7 @@ import java.util.Arrays;
 import java.util.List;
 import java.util.concurrent.*;
 
-import static com.aadavan.lambdas.java8InAction.practise1.ThreadUtils.delay;
+import static com.aadavan.lambdas.java8InAction.practise1.ThreadUtilsForDelay.delayInSeconds;
 import static java.util.stream.Collectors.toList;
 
 public class _1_BestPriceFinderApplication {
@@ -73,7 +73,7 @@ public class _1_BestPriceFinderApplication {
     }
 
     private static void doSomethingElse() {
-        delay(2);
+        delayInSeconds(2);
         System.out.println("Doing some other task.");
     }
 

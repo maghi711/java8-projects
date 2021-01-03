@@ -4,7 +4,7 @@ import java.util.Random;
 import java.util.concurrent.CompletableFuture;
 import java.util.concurrent.Future;
 
-import static com.aadavan.lambdas.java8InAction.practise1.ThreadUtils.delay;
+import static com.aadavan.lambdas.java8InAction.practise1.ThreadUtilsForDelay.delayInSeconds;
 
 public class _1_Shop {
 
@@ -44,7 +44,7 @@ public class _1_Shop {
     }
 
     private double calculatePrice(String productName) {
-        delay(1);
+        delayInSeconds(1);
         return random.nextDouble() * productName.charAt(0) + productName.charAt(1);
     }
 

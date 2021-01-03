@@ -12,4 +12,8 @@ public class ThreadUtils {
         }
     }
 
+    public static void main(String[] args) {
+        // Usage: use the delay api as defined below
+        ThreadUtils.delay(1, TimeUnit.SECONDS);
+    }
 }
