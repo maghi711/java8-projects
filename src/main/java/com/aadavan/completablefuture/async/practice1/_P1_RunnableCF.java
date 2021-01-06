@@ -10,17 +10,17 @@ import java.util.concurrent.TimeUnit;
 public class _P1_RunnableCF {
 
     public static void main(String[] args) {
-        firstWay();
-        secondWay();
+        executeInDefaultCommonForkJoinPool();
+        executeInAnExecutorPool();
     }
 
-    private static void secondWay() {
+    private static void executeInAnExecutorPool() {
         ExecutorService service = Executors.newSingleThreadExecutor();
         CompletableFuture.runAsync(() -> System.out.println("Runnable task completed.\t" + Thread.currentThread().getName()), service);
         service.shutdown();
     }
 
-    private static void firstWay() {
+    private static void executeInDefaultCommonForkJoinPool() {
         CompletableFuture.runAsync(() -> System.out.println("Runnable task completed.\t" + Thread.currentThread().getName()));
         ThreadUtils.delay(10, TimeUnit.MILLISECONDS);
     }

@@ -10,18 +10,18 @@ import java.util.function.Supplier;
 public class _P1_SupplierCF {
 
     public static void main(String[] args) {
-        firstWay();
-        secondWay();
+        executeInDefaultCommonForkJoinPool();
+        executeInAnExecutorPool();
     }
 
-    private static void firstWay() {
+    private static void executeInDefaultCommonForkJoinPool() {
         Supplier<String> supplier = () -> Thread.currentThread().getName();
         CompletableFuture<String> stringCompletableFuture = CompletableFuture.supplyAsync(supplier);
         String join = stringCompletableFuture.join();
         System.out.println(join);
     }
 
-    private static void secondWay() {
+    private static void executeInAnExecutorPool() {
         Supplier<String> supplier = () -> Thread.currentThread().getName();
         ExecutorService executor = Executors.newSingleThreadExecutor();
         CompletableFuture<String> scf = CompletableFuture.supplyAsync(supplier, executor);

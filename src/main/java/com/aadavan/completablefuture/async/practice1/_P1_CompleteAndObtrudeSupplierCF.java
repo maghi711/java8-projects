@@ -9,11 +9,11 @@ import java.util.function.Supplier;
 public class _P1_CompleteAndObtrudeSupplierCF {
 
     public static void main(String[] args) {
-        firstWay();
-        secondWay();
+        usingCompleteAPIInCF();
+        usingObtrudeValueAPIInCF();
     }
 
-    private static void firstWay() {
+    private static void usingCompleteAPIInCF() {
         Supplier<String> supplier = () -> {
             ThreadUtils.delay(500, TimeUnit.MILLISECONDS);
             return Thread.currentThread().getName();
@@ -27,7 +27,7 @@ public class _P1_CompleteAndObtrudeSupplierCF {
         System.out.println(join);
     }
 
-    private static void secondWay() {
+    private static void usingObtrudeValueAPIInCF() {
         Supplier<String> supplier = () -> Thread.currentThread().getName();
         ExecutorService executor = Executors.newSingleThreadExecutor();
         CompletableFuture<String> scf = CompletableFuture.supplyAsync(supplier, executor);
