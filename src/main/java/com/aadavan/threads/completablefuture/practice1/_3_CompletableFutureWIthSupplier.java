@@ -1,5 +1,6 @@
 package com.aadavan.threads.completablefuture.practice1;
 
+import java.util.Date;
 import java.util.concurrent.CompletableFuture;
 import java.util.concurrent.ExecutionException;
 import java.util.function.Supplier;
@@ -15,5 +16,7 @@ public class _3_CompletableFutureWIthSupplier {
         } catch (ExecutionException e) {
             e.printStackTrace();
         }
+
+        final CompletableFuture<String> stringCompletableFuture = CompletableFuture.supplyAsync(() -> new Date() + " ");
     }
 }
