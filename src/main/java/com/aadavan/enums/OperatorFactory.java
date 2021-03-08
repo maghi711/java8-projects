@@ -11,8 +11,15 @@ public class OperatorFactory {
                 return new GreaterThan();
             case GREATER_THAN_EQUALS:
                 return new GreaterThanEquals();
+            case BETWEEN:
+                return new Between();
             default:
                 throw new RuntimeException("Unknown operation");
         }
+    }
+
+    public static void main(String[] args) {
+        final Operator operator = OperatorFactory.getOperator(OperatorType.LESS_THAN);
+        System.out.println(operator);
     }
 }

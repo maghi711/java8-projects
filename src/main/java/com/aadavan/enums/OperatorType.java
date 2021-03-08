@@ -4,7 +4,8 @@ public enum OperatorType {
     LESS_THAN("<"),
     GREATER_THAN(">"),
     LESS_THAN_EQUALS(">="),
-    GREATER_THAN_EQUALS(">=");
+    GREATER_THAN_EQUALS(">="),
+    BETWEEN("><");
 
     private final String operator;
     OperatorType(String operator) {
