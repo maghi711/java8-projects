@@ -1,14 +1,12 @@
 package com.aadavan.completablefuture.async;
 
-import com.aadavan.completablefuture.utils.ThreadUtils;
-
 import java.util.concurrent.CompletableFuture;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 
-public class _3_FirstRunnableCF {
+public class _3_RunnableCF {
     public static void main(String[] args) {
-        _3_FirstRunnableCF instance = new _3_FirstRunnableCF();
+        _3_RunnableCF instance = new _3_RunnableCF();
         Runnable task = () -> System.out.println("Thread.currentThread().getName() = " + Thread.currentThread().getName());
         //instance.plainCall(task);
         instance.withExecutorService(task);
