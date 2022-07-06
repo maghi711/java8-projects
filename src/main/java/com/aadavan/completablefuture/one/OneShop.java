@@ -60,7 +60,7 @@ public class OneShop {
         try {
             TimeUnit.SECONDS.sleep(delayInSeonds);
         } catch (InterruptedException ie) {
-            throw new RuntimeException();
+            Thread.currentThread().interrupt();
         }
     }
 }
