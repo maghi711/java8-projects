@@ -10,9 +10,9 @@ import java.util.concurrent.CompletableFuture;
 import java.util.concurrent.TimeUnit;
 import java.util.function.Supplier;
 
-public class A1FIrstRunnableCF {
+public class A1FirstRunnableCF {
 
-    private static final Logger LOGGER = LoggerFactory.getLogger(A1FIrstRunnableCF.class);
+    private static final Logger LOGGER = LoggerFactory.getLogger(A1FirstRunnableCF.class);
     public static void main(String[] args) {
         BasicConfigurator.configure();
         practice();
