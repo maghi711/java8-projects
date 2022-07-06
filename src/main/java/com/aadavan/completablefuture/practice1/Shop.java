@@ -11,7 +11,7 @@ import java.util.concurrent.*;
 public class Shop {
 
     private static final Logger LOGGER = LoggerFactory.getLogger(Shop.class);
-    Random random = new Random();
+    private static final Random random = new Random();
 
     private double calculatePrice(String product) {
         LOGGER.info("Calculating the price");
@@ -28,8 +28,9 @@ public class Shop {
         BasicConfigurator.configure();
         LOGGER.info("Available processors are {}", Runtime.getRuntime().availableProcessors());
         Shop shop = new Shop();
-        final Future<Double> miA1 = shop.getPriceAsync("Mi A1");
-        LOGGER.info("The calculated price from sync is {}", shop.calculatePrice("Mi A1"));
+        final String product = "Mi A1";
+        final Future<Double> miA1 = shop.getPriceAsync(product);
+        LOGGER.info("The calculated price from sync is {}", shop.calculatePrice(product));
         try {
             LOGGER.info("The calculated price from async is {}", miA1.get(15, TimeUnit.SECONDS));
         } catch (InterruptedException e) {
