@@ -13,15 +13,38 @@ public class Shop {
     private static final Logger LOGGER = LoggerFactory.getLogger(Shop.class);
     private static final Random random = new Random();
 
+    private final String name;
+
+    public Shop(String name) {
+        this.name = name;
+    }
+
+    public Shop() {
+        this.name = "default-shop";
+    }
+
+    public String getName() {
+        return name;
+    }
+
     private double calculatePrice(String product) {
         LOGGER.info("Calculating the price");
         ThreadUtils.delay(3, TimeUnit.SECONDS);
         return random.nextDouble() * product.charAt(0) + product.charAt(1);
     }
 
+    public double getPrice(String product) {
+        return calculatePrice(product);
+    }
+
     public Future<Double> getPriceAsync(String product) {
         LOGGER.info("Running in a separate thread async");
         return CompletableFuture.supplyAsync(() -> calculatePrice(product));
+    }
+
+    @Override
+    public String toString() {
+        return this.name;
     }
 
     public static void main(String[] args) {
@@ -33,12 +56,8 @@ public class Shop {
         LOGGER.info("The calculated price from sync is {}", shop.calculatePrice(product));
         try {
             LOGGER.info("The calculated price from async is {}", miA1.get(15, TimeUnit.SECONDS));
-        } catch (InterruptedException e) {
-            throw new RuntimeException(e);
-        } catch (ExecutionException e) {
-            throw new RuntimeException(e);
-        } catch (TimeoutException e) {
-            throw new RuntimeException(e);
+        } catch (InterruptedException | ExecutionException | TimeoutException e) {
+            Thread.currentThread().interrupt();
         }
     }
 
