@@ -7,7 +7,7 @@ import org.slf4j.LoggerFactory;
 import java.util.Arrays;
 import java.util.List;
 import java.util.concurrent.Future;
-import java.util.stream.Collectors;
+
 
 public class ExposeSyncToAsync {
     static {
@@ -36,6 +36,7 @@ public class ExposeSyncToAsync {
             // while the price is being calculated
             try {
                 double price = doubleFuture.get();
+                LOGGER.info("Price is {} milli seconds", price);
             } catch (Exception e) {
                 throw new RuntimeException(e);
             }
