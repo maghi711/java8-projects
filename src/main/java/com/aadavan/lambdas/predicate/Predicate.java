@@ -13,7 +13,7 @@ public interface Predicate<T> {
      */
     default Predicate<T> andThen(Predicate<T> other) {
         Objects.requireNonNull(other);
-        return (T t) -> this.test(t) && other.test(t);
+        return (t) -> this.test(t) && other.test(t);
     }
 
     /**

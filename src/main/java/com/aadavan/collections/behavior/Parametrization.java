@@ -18,7 +18,13 @@ public class Parametrization {
         List<Employee> employeesByName = getEmployeesByName(employees, "Aadavan M");
         System.out.println("employeesByName = " + employeesByName);
 
-        List<Employee> nameSearch = getEmployees(employees, employee -> "Aadavan M".equalsIgnoreCase(employee.getName()));
+        Predicate<Employee> nameCondition = employee -> employee.getName().startsWith("A");
+        Predicate<Employee> zipCondition2 = employee -> employee.getZipcode() == 560001;
+
+        List<Employee> nameSearch = getEmployees(employees, nameCondition.andThen(zipCondition2));
+        System.out.println("nameSearch = " + nameSearch);
+
+        nameSearch = getEmployees(employees, employee -> "Aadavan M".equalsIgnoreCase(employee.getName()));
         System.out.println("nameSearch = " + nameSearch);
 
         int zipCode = 560040;
