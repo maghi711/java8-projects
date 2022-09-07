@@ -6,7 +6,7 @@ package com.aadavan.dp;
 
 
 
-public class _1_Solve {
+public class _1_DpTechniques {
     public static void main(String[] args) {
         int n = 5;
         int dp[]= new int[n + 10];
