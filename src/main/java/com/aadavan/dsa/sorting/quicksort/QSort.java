@@ -1,4 +1,4 @@
-package com.aadavan.dsa.sorting;
+package com.aadavan.dsa.sorting.quicksort;
 
 import java.util.Arrays;
 
@@ -25,6 +25,7 @@ public class QSort {
         int j = high;
         while(i < j) {
             while (a[i] <= pivot) {
+                if (i == high) break;
                 i++;
             }
             while (a[j] > pivot) {

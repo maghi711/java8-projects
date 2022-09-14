@@ -5,7 +5,9 @@ import java.util.Arrays;
 public class _2_QuickSort {
 
     public static void main(String[] args) {
-        int[] n = {10, 16, 8, 12, 15, 6, 3, 9, 5};
+        //int[] n = {10, 16, 8, 12, 15, 6, 3, 9, 5};
+        //int[] n = {5, 4, 3, 2, 1};
+        int[] n = {1, 2, 3, 4, 5};
         System.out.println("Arrays.toString(n) = " + Arrays.toString(n));
         quickSort(n, 0, n.length-1);
         System.out.println("Arrays.toString(n) = " + Arrays.toString(n));
@@ -25,6 +27,7 @@ public class _2_QuickSort {
         int j = high;
         while (i < j) {
             while (a[i] <= pivot) {
+                if (i == high) break;
                 i++;
             }
             while (a[j] > pivot) {
